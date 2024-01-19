@@ -1,4 +1,13 @@
-# pfSense shell script for reporting gateway status to Uptime Kuma
+# this fork is meant to enrich the work done by @maxxoverclocker and make script a little better
+It is made mostly of contributions people left in the Issues of original repo 
+
+Here is a list of updates
+- autoconfigure py script
+- fix to the main script
+- opnsense version
+- 
+
+# pfSense and opnSense shell scripts for reporting gateway status to Uptime Kuma
 Simple script that will report the current gateway status in pfSense to Uptime Kuma. Supports multiple WANs. Will report 'PACKETLOSS' and 'LATENCY' as 'msg' to Uptime Kuma as well as 'UP' or 'DOWN' as 'status'.
 
 # Screenshots
