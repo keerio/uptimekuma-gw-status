@@ -1,7 +1,7 @@
 # this fork is meant to enrich the work done by @maxxoverclocker and make script a little better
 It is made mostly of contributions people left in the Issues of original repo 
 
-Here is a list of updates
+Here is a list of updates (not published yet)
 - autoconfigure py script
 - fix to the main script
 - opnsense version
