@@ -23,28 +23,25 @@ set output = `python3 opnsense_gateway_status.py`
 echo $output
 
 # $script_path/dpinger-gateway-status.py > $script_path/dpinger-gateway-status.out
+#!/bin/csh -f
+set i = 1
+while ($i <= `cat output.csv | wc -l`)
+    set row = `sed -n "${i}p" output.csv`
+    echo "${i}: $row"
+    @ i++
+end
+echo "Please enter the number of the row you want to select:"
+set selection = "$<"
 
+# Try to subtract one from the selection
+set test = `expr $selection - 1`
 
-
-
-
-# Clear the screen
-clear
-
-# Read from output.csv and print each line as a numbered option
-awk -v RS=',' '{printf "%d. %s\n", NR, $0}' output.csv
-
-# Ask the user to choose an option
-echo "Please enter the number of your choice:"
-set choice = $<
-
-# Check if input was provided
-if ("$choice" == "") then
-    # Use default value if no input was provided
-    set choice = 1
+# Check if the subtraction resulted in a number
+if ("$test" != "") then
+    # Convert the selection to a number
+    set selection = `expr $selection + 0`
+    echo "You selected row $selection"
+else
+    echo "Invalid input. Please enter a digit."
 endif
-
-# Print the chosen option
-echo "You chose: `awk 'NR='$choice' {print $0}' output.csv`"
-
 
