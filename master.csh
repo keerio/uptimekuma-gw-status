@@ -28,5 +28,30 @@ echo $output
 
 
 
-# Display some data
+# Show header
+clear
 echo "Uptime Kuma monitoring script"
+echo ""
+echo "Gateway monitoring status:"
+
+# Read from output.csv
+set i = 1
+while (`awk 'BEGIN {FS=","} NR=='$i' {print $1}' output.csv`) != ""
+    echo "$i. `awk 'BEGIN {FS=","} NR=='$i' {print $1}' output.csv`"
+    @ i++
+end
+
+# Ask the user to choose an option
+echo "Please enter the number of your choice:"
+set choice = $<
+
+# Check if input was provided
+if ("$choice" == "") then
+    # Use default value if no input was provided
+    set choice = 1
+endif
+
+# Print the chosen option
+echo "You chose: `awk 'BEGIN {FS=","} NR='$choice' {print $1}' output.csv`"
+
+
