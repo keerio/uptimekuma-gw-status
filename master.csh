@@ -22,6 +22,9 @@ chmod +x opnsense_gateway_status.py
 set output = `python3 opnsense_gateway_status.py`
 echo $output
 
+$script_path/dpinger-gateway-status.py > $script_path/dpinger-gateway-status.out
+
+
 
 
 
