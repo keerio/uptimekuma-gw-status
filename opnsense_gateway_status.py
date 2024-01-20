@@ -4,7 +4,7 @@ import os
 import xml.etree.ElementTree as ET
 
 def read_gateway():
-    tree = ET.parse('/path/to/your/config.xml')
+    tree = ET.parse('/conf/config.xml')
     root = tree.getroot()
 
     temp_file = 'temp.txt'
