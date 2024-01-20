@@ -3,9 +3,20 @@
 # Add necessary directories to the system path
 set path = ($path /bin /sbin /usr/bin /usr/local/bin /usr/local/sbin)
 
+# Check current python version and update dpinger-gateway-status.py
+
+# Step 1: Find Python3 executable in /usr/local/lib
+set found = `/usr/bin/find /usr/local/lib -name "python3*" -print | head -1 | xargs -n1 basename`
+
+# Step 2: Create a string "#!/usr/local/bin/" + basename
+set shebang="#!/usr/local/bin/$found\n"
+
+# Step 3: Modify file dpinger-gateway-status.py, replace 1st string with output from step 2
+sed -i "1c$shebang" dpinger-gateway-status.py
+
 # Set the path of the script and log file path (monitor with: tail -f uptime-kuma-gateway-status.log)
-set script_name = 'uptime-kuma-gateway-status'
-set script_path = '/root/local-scripts/uptime-kuma-gateway-status'
+set script_name = 'uptimekuma-pfsense-gw-status'
+set script_path = '/root/local-scripts/uptimekuma-pfsense-gw-status'
 set log_file = 'uptime-kuma-gateway-status.log'
 set is_running = `pgrep -f $script_name`
 
@@ -23,10 +34,15 @@ set gateway_names = 'WAN_1_DHCP WAN_2_DHCP'
 @ loss_threshold_warn = 5
 @ loss_threshold_error = 10
 
-if ( $is_running != "" )
-then
-    echo "Another instance of $script_name is already running."
-    exit 1
+if (! $?is_running) then
+        echo "is_running is undefined"
+else
+        if ("$is_running" == "") then
+                echo "is_running is empty"
+        else
+                echo "Another instance of $script_name is already running"
+                exit 1
+        endif
 endif
 
 # Loop indefinitely
