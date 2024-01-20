@@ -1,11 +1,10 @@
 #!/usr/local/bin/python3
 # read_xml.py
-
 import os
 import xml.etree.ElementTree as ET
 
 def read_gateway():
-    tree = ET.parse('/conf/config.xml')
+    tree = ET.parse('/path/to/your/config.xml')
     root = tree.getroot()
 
     temp_file = 'temp.txt'
@@ -17,19 +16,17 @@ def read_gateway():
             
             f.write(f"Interface: {interface}, Gateway: {gateway}, Name: {name}\n")
 
-    # Compare the temporary file with the existing file
-    existing_names = set()
-    if os.path.exists('gateway_status.txt'):
-        with open('gateway_status.txt', 'r') as f:
-            for line in f:
-                existing_names.add(line.strip())
+    # If the existing file is empty, simply rename the temporary file
+    if not os.path.exists('gateway_status.txt') or os.stat('gateway_status.txt').st_size == 0:
+        os.rename(temp_file, 'gateway_status.txt')
+    else:
+        # Read the new lines from the temporary file
+        with open(temp_file, 'r') as f:
+            new_lines = [line for line in f]
 
-    with open(temp_file, 'r') as f:
-        new_lines = [line for line in f]
-
-    with open('gateway_status.txt', 'w') as f:
-        for line in new_lines:
-            if line.strip() in existing_names:
+        # Add the new lines to the existing file
+        with open('gateway_status.txt', 'a') as f:
+            for line in new_lines:
                 f.write(line)
 
 if __name__ == "__main__":
