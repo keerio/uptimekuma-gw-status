@@ -34,12 +34,9 @@ echo "Uptime Kuma monitoring script"
 echo ""
 echo "Gateway monitoring status:"
 
-# Read from output.csv
-set i = 1
-while (`awk 'BEGIN {FS=","} NR=='$i' {print $1}' output.csv`) != ""
-    echo "$i. `awk 'BEGIN {FS=","} NR=='$i' {print $1}' output.csv`"
-    @ i++
-end
+
+# Read from output.csv and print each line as a numbered option
+awk -v RS=',' '{printf "%d. %s\n", NR, $0}' output.csv
 
 # Ask the user to choose an option
 echo "Please enter the number of your choice:"
@@ -52,6 +49,6 @@ if ("$choice" == "") then
 endif
 
 # Print the chosen option
-echo "You chose: `awk 'BEGIN {FS=","} NR='$choice' {print $1}' output.csv`"
+echo "You chose: `awk 'NR='$choice' {print $0}' output.csv`"
 
 
