@@ -1,12 +1,14 @@
 #!/bin/csh -f
 
 # Add necessary directories to the system path
-set path = ($path /bin /sbin /usr/bin /usr/local/bin /usr/local/sbin)
+set path = ($path /bin /sbin /usr/bin /usr/local/bin /usr/local/sbin /usr/local/)
 
 # Check current python version and update py scripts
 
 # Step 1: Find Python3 executable in /usr/local/lib
-set found = `/usr/bin/find /usr/local/lib -name "python3*" -print | head -1 | xargs -n1 basename`
+#set found = `/usr/bin/find /usr/local/lib -name "python3*" -print | head -1 | xargs -n1 basename`
+set found = `/usr/bin/find /usr/local/bin -name "python3*" -print | head -1 | xargs -n1 basename`
+
 
 # Step 2: Create a string "#!/usr/local/bin/" + basename
 set shebang="#!/usr/local/bin/$found\n"

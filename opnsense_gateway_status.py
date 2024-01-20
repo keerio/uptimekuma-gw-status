@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 # read_xml.py
 import xml.etree.ElementTree as ET
 
