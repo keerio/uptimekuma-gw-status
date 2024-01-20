@@ -19,7 +19,7 @@ set path = ($path /bin /sbin /usr/bin /usr/local/bin /usr/local/sbin /usr/local/
 
 chmod +x opnsense_gateway_status.py
 
-set output = `$found opnsense_gateway_status.py`
+set output = `python3 opnsense_gateway_status.py`
 echo $output
 
 
