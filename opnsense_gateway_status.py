@@ -1,5 +1,5 @@
 #!/usr/local/bin/python3
-## read_xml.py
+# read_xml.py
 import os
 import xml.etree.ElementTree as ET
 import csv
