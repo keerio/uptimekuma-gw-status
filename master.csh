@@ -28,14 +28,11 @@ echo $output
 
 
 
-# Show header
+# Clear the screen
 clear
-echo "Uptime Kuma monitoring script"
-echo ""
-echo "Gateway monitoring status:"
 
-# Read from output.csv and print each line (except the first one) as a numbered option
-awk 'NR>1 {printf "%d. %s\n", NR-1, $0}' output.csv
+# Read from output.csv and print each line as a numbered option
+awk -v RS=',' '{printf "%d. %s\n", NR, $0}' output.csv
 
 # Ask the user to choose an option
 echo "Please enter the number of your choice:"
