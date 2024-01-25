@@ -54,21 +54,21 @@ set selected_options = `dialog --clear --backtitle "Select Options" --separate-o
 #rm temp.txt
 
 echo selected options set 
-
 # Iterate over the selected options
-for option in $selected_options; do
+foreach option ( $selected_options )
     # Get the first field of the selected line
-    gw_name=$(awk -v line="$option" -F',' 'NR==line {print $1}' "$csv_file")
+    set gw_name = `awk -v line="$option" -F',' 'NR==line {print $1}' "$csv_file"`
 
     # Get the fourth field of the selected line
-    default_value=$(awk -v line="$option" -F',' 'NR==line {print $4}' "$csv_file")
+    set default_value = `awk -v line="$option" -F',' 'NR==line {print $4}' "$csv_file"`
 
     # Prompt for input
-    input=$(dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 15 40 "$default_value" 2>&1 >/dev/tty)
+    set input = `dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 15 40 "$default_value" 2>&1 >/dev/tty`
 
     # Store the input as the fourth field of the selected line
-    awk -v line="$option" -v input="$input" -F',' 'BEGIN{OFS=FS} NR==line {$4=input} 1' "$csv_file" > temp.csv && mv temp.csv "$csv_file"
-done
+    awk -v line="$option" -v input="$input" -F',' 'BEGIN{OFS=FS} NR==line {$4=input} 1' "$csv_file" > temp.csv
+    mv temp.csv "$csv_file"
+end
 
 # Script options
 
