@@ -18,7 +18,7 @@ echo $output
 #     end
 
 # Define the CSV file path
-csv_file="output.csv"
+set csv_file = output.csv
 
 # Parse the CSV file and extract the first field from each line
 # Append " on" if the fourth field is not empty, otherwise append " off"
