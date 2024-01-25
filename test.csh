@@ -50,7 +50,7 @@ echo options set
 
 # Run dialog command and save output to temp file
 #dialog --clear --backtitle "Select Options" --separate-output --checklist --no-tags "Enable monitoring:" 15 80 8 $options | tee temp.txt
-dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 3 3 $options | tee temp.txt
+dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
 
 # Read contents of temp file into selectedoptions variable
 set selectedoptions = `cat temp.txt`
