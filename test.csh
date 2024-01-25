@@ -19,11 +19,11 @@ echo ogw run
 #     end
 
 # Define the CSV file path
-set csv_file = output.csv
+# set csv_file = output.csv
 
 # Parse the CSV file and extract the first field from each line
 # Append " on" if the fourth field is not empty, otherwise append " off"
-options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "$csv_file")
+options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "output.csv")
 
 echo options set
 
