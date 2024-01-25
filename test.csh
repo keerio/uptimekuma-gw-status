@@ -36,31 +36,25 @@ rm temp.txt
 
 echo options set
 
-# Create the dialog box
-#selected_options=$(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options 2>&1 >/dev/tty)
 
-# Run dialog command and save output to temp file
-# Run dialog command and save output to selected_options variable
-#set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > >(tee /dev/tty)`
-# Run dialog command and save output to selected_options variable
-#set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee /dev/tty`
-#dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options > temp.txt
-#dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | $options tee temp.txt
-#dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
+set i = 1
+set tags = ""
+foreach line (`cat output.csv`)
+    set tags = "$tags $i"
+    echo "item$i \"$line\" off" >> temp.txt
+    @ i++
+end
 
-# Run dialog command and save output to temp file
-#dialog --clear --backtitle "Select Options" --separate-output --checklist --no-tags "Enable monitoring:" 15 80 8 $options | tee temp.txt
-dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
+dialog --checklist "Select items:" 22 76 15 \
+    $(cat temp.txt) 2>temp.result
 
-# Read contents of temp file into selectedoptions variable
-set selected_options = `cat temp.txt`
+rm -f temp.txt
 
-# Don't forget to delete the temp file afterwards
-rm temp.txt
+set selected = `cat temp.result`
+echo "Selected items: $selected"
 
-echo $selected_options
-# Don't forget to delete the temp file afterwards
-rm temp.txt
+
+
 echo selected options set 
 # Iterate over the selected options
 
