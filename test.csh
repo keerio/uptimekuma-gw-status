@@ -52,7 +52,7 @@ dialog --clear --backtitle "Select Options" --separate-output --checklist "Enabl
 set selected_options = `cat temp.txt`
 # Don't forget to delete the temp file afterwards
 rm temp.txt
-# echo $selected_options
+echo $selected_options
 echo selected options set 
 # Iterate over the selected options
 
