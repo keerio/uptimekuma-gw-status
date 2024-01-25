@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/csh
 
 # Add necessary directories to the system path
 set path = ($path /bin /sbin /usr/bin /usr/local/bin /usr/local/sbin /usr/local/)
