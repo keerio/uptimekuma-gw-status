@@ -48,22 +48,14 @@ echo options set
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | $options tee temp.txt
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
 
-# Get selected options
-set selectedoptions = ((dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee /dev/tty))
+# Run dialog command and save output to temp file
+dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
 
-# Print selected options
-echo $selectedoptions
-
-
-
-echo magic
-#dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > temp.txt
-
-# Read contents of temp file into selected_options variable
+# Read contents of temp file into selectedoptions variable
 set selected_options = `cat temp.txt`
+
 # Don't forget to delete the temp file afterwards
-#rm temp.txt
-echo $selected_options
+rm temp.txt
 echo selected options set 
 # Iterate over the selected options
 
