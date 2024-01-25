@@ -43,8 +43,8 @@ echo options set
 # Run dialog command and save output to selected_options variable
 #set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > >(tee /dev/tty)`
 # Run dialog command and save output to selected_options variable
-set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee /dev/tty`
-#dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | $options > temp.txt
+#set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee /dev/tty`
+dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee > temp.txt
 
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > temp.txt
 
@@ -52,7 +52,7 @@ set selected_options = `dialog --clear --backtitle "Select Options" --separate-o
 #set selected_options = `cat temp.txt`
 # Don't forget to delete the temp file afterwards
 #rm temp.txt
-echo selected_options
+echo $selected_options
 echo selected options set 
 # Iterate over the selected options
 foreach option ( $selected_options )
