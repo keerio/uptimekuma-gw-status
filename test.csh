@@ -23,7 +23,18 @@ echo ogw run
 
 # Parse the CSV file and extract the first field from each line
 # Append " on" if the fourth field is not empty, otherwise append " off"
-options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "output.csv")
+#options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "output.csv")
+
+# Run awk command and save output to temp file
+awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "output.csv" > temp.txt
+
+# Read contents of temp file into options variable
+set options = `cat temp.txt`
+
+# Don't forget to delete the temp file afterwards
+rm temp.txt
+
+
 
 echo options set
 
