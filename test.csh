@@ -52,7 +52,7 @@ echo options set
 dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
 
 # Read contents of temp file into selectedoptions variable
-set selected_options = `cat temp.txt`
+set selected_options = (cat temp.txt)
 
 # Don't forget to delete the temp file afterwards
 rm temp.txt
