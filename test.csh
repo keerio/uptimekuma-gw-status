@@ -36,17 +36,20 @@ rm temp.txt
 
 echo options set
 
-
+#!/bin/csh
 set i = 1
 set tags = ""
+set options = ()
 foreach line (`cat output.csv`)
     set tags = "$tags $i"
-    echo "item$i \"$line\" off" >> temp.txt
+    set options = ($options "item$i \"$line\" off")
     @ i++
 end
 
+echo $options > temp.txt
+
 dialog --checklist "Select items:" 22 76 15 \
-    $(cat temp.txt) 2>temp.result
+    `cat temp.txt` 2>temp.result
 
 rm -f temp.txt
 
