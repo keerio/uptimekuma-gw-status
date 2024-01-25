@@ -24,6 +24,7 @@ csv_file="output.csv"
 # Append " on" if the fourth field is not empty, otherwise append " off"
 options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "$csv_file")
 
+echo "options set"
 
 # Create the dialog box
 selected_options=$(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options 2>&1 >/dev/tty)
