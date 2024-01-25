@@ -8,8 +8,8 @@ chmod +x dpinger-gateway-status.py
 
 set output = `python3 opnsense_gateway_status.py`
 
-echo $output
-echo "ogw run"
+#echo $output
+echo ogw run
 
 # set i = 1
 #     while ($i <= `cat output.csv | wc -l`)
@@ -25,7 +25,7 @@ set csv_file = output.csv
 # Append " on" if the fourth field is not empty, otherwise append " off"
 options=$(awk -F',' '{if ($4 != "") printf "%s \"%s,%s,%s\" on\n", NR, $1,$2,$3; else printf "%s \"%s,%s,%s\" off\n", NR, $1,$2,$3}' "$csv_file")
 
-echo "options set"
+echo options set
 
 # Create the dialog box
 selected_options=$(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options 2>&1 >/dev/tty)
