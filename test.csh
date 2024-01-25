@@ -34,12 +34,12 @@ set options = `cat temp.txt`
 # Don't forget to delete the temp file afterwards
 rm temp.txt
 
-
-
 echo options set
 
 # Create the dialog box
 selected_options=$(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options 2>&1 >/dev/tty)
+
+echo selected options set 
 
 # Iterate over the selected options
 for option in $selected_options; do
