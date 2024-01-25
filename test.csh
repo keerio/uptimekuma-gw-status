@@ -43,7 +43,7 @@ echo options set
 # Run dialog command and save output to selected_options variable
 #set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > >(tee /dev/tty)`
 # Run dialog command and save output to selected_options variable
-set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options | tee /dev/tty`
+set selected_options = `dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee /dev/tty`
 
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > temp.txt
 
@@ -63,7 +63,7 @@ foreach option ( $selected_options )
     set default_value = `awk -v line="$option" -F',' 'NR==line {print $4}' "$csv_file"`
 
     # Prompt for input
-    set input = `dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 20 80 8 "$default_value" 2>&1 >/dev/tty`
+    set input = `dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 20 80 "$default_value" 2>&1 >/dev/tty`
 
     # Store the input as the fourth field of the selected line
     awk -v line="$option" -v input="$input" -F',' 'BEGIN{OFS=FS} NR==line {$4=input} 1' "$csv_file" > temp.csv
