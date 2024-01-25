@@ -49,10 +49,11 @@ echo options set
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options | tee temp.txt
 
 # Get selected options
-set selected_options = `(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options 2>&1 >/dev/tty)`
+set selected_options = `(dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 8 $options > >(tee /dev/tty))`
 
 # Print selected options
 echo $selected_options
+
 
 echo magic
 #dialog --clear --backtitle "Select Options" --separate-output --checklist "Enable monitoring:" 15 80 3 $options > temp.txt
