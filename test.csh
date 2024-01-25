@@ -35,7 +35,6 @@ set options = `cat temp.txt`
 rm temp.txt
 
 echo options set
-
 #!/bin/csh
 set i = 1
 set tags = ""
