@@ -63,7 +63,7 @@ foreach option ( $selected_options )
     set default_value = `awk -v line="$option" -F',' 'NR==line {print $4}' "$csv_file"`
 
     # Prompt for input
-    set input = `dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 30 150 8 "$default_value" 2>&1 >/dev/tty`
+    set input = `dialog --clear --backtitle "Uptime Kuma push URL for $option" --inputbox "Paste Uptime Kuma push URL for $gw_name. Set heartbeat to 20." 80 150 8 "$default_value" 2>&1 >/dev/tty`
 
     # Store the input as the fourth field of the selected line
     awk -v line="$option" -v input="$input" -F',' 'BEGIN{OFS=FS} NR==line {$4=input} 1' "$csv_file" > temp.csv
