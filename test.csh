@@ -10,12 +10,12 @@ set output = `python3 opnsense_gateway_status.py`
 
 echo $output
 
-set i = 1
-    while ($i <= `cat output.csv | wc -l`)
-        set row = `sed -n "${i}p" output.csv`
-        echo "${i}: $row"
-        @ i++
-    end
+# set i = 1
+#     while ($i <= `cat output.csv | wc -l`)
+#         set row = `sed -n "${i}p" output.csv`
+#         echo "${i}: $row"
+#         @ i++
+#     end
 
 # Define the CSV file path
 csv_file="output.csv"
