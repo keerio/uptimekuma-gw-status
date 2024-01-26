@@ -41,6 +41,20 @@ dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
 
 echo cat set
 
+tempfile = temp.txt
+
+dialog --backtitle "Select your favorite singer" \
+	--title "My favorite singer" --clear \
+        --radiolist "Hi, you can select your favorite singer here  " 20 61 5 \
+        "Rafi"  "Mohammed Rafi" off \
+        "Lata"    "Lata Mangeshkar" ON \
+        "Hemant" "Hemant Kumar" off \
+        "Dey"    "MannaDey" off \
+        "Kishore"    "Kishore Kumar" off \
+        "Yesudas"   "K. J. Yesudas" off  2> $tempfile
+
+
+
 set i = 1
 set tags = ""
 echo tags set
