@@ -37,16 +37,36 @@ rm temp.txt
 echo options set
 
 
-dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
+dialog --checklist text 0 0 0 \
+ 1 dog yes \
+ 2 cat no \
+ --stdout > olo.txt
 
 echo cat set
 
 set tempfile = "temp.txt"
 
+dialog --radiolist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
+
+dialog --backtitle "Select your favorite singer" \
+	--title "My favorite singer" --clear \
+    --radiolist "Select gateways to monitor" 0 0 0 \
+
+        "Rafi"  "Mohammed Rafi" "safi" off \
+        "Lata"    "Lata Mangeshkar" ON \
+        "Hemant" "Hemant Kumar" off \
+        "Dey"    "MannaDey" off --stdout > olo.txt
+
+
+
+
+
+
+
 dialog --backtitle "Select your favorite singer" \
 	--title "My favorite singer" --clear \
         --radiolist "Hi, you can select your favorite singer here  " 20 61 5 \
-        "Rafi"  "Mohammed Rafi" off \
+        "Rafi"  "Mohammed Rafi" "safi" off \
         "Lata"    "Lata Mangeshkar" ON \
         "Hemant" "Hemant Kumar" off \
         "Dey"    "MannaDey" off \
