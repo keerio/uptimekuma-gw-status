@@ -8,7 +8,7 @@ chmod +x dpinger-gateway-status.py
 
 set output = `python3 opnsense_gateway_status.py`
 
-#echo $output
+echo $output
 echo ogw run
 
 # set i = 1
