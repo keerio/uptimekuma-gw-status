@@ -39,7 +39,7 @@ echo options set
 
 dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
 
-
+echo cat set
 
 #!/bin/csh
 set i = 1
