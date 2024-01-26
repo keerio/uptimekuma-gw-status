@@ -35,6 +35,12 @@ set options = `cat temp.txt`
 rm temp.txt
 
 echo options set
+
+
+dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
+
+
+
 #!/bin/csh
 set i = 1
 set tags = ""
@@ -54,6 +60,9 @@ rm -f temp.txt
 
 set selected = `cat temp.result`
 echo "Selected items: $selected"
+
+
+
 
 
 
