@@ -41,7 +41,7 @@ dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
 
 echo cat set
 
-tempfile = temp.txt
+tempfile = "temp.txt"
 
 dialog --backtitle "Select your favorite singer" \
 	--title "My favorite singer" --clear \
