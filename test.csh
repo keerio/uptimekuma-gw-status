@@ -41,9 +41,9 @@ dialog --checklist text 0 0 0 1 dog yes 2 cat no --stdout > olo.txt
 
 echo cat set
 
-#!/bin/csh
 set i = 1
 set tags = ""
+echo tags set
 set options = ()
 foreach line (`cat output.csv`)
     set tags = "$tags $i"
