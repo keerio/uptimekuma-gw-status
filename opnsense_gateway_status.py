@@ -38,5 +38,8 @@ def read_gateway():
             for row in merged_rows:
                 f.write(row + '\n')
 
+
+
+
 if __name__ == "__main__":
     read_gateway()

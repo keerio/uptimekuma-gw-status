@@ -1,42 +1,30 @@
-#!/usr/local/bin/python3
-# read_xml.py
 import os
-import xml.etree.ElementTree as ET
 
-def read_gateway():
-    tree = ET.parse('/conf/config.xml')
-    root = tree.getroot()
+def get_options_from_file(filename):
+    with open(filename, 'r') as f:
+        return [line.strip().split(',') for line in f]
 
-    temp_file = 'temp.txt'
-    with open(temp_file, 'w') as f:
-        for gateway_item in root.iter('gateway_item'):
-            interface = gateway_item.find('interface').text
-            gateway = gateway_item.find('gateway').text
-            name = gateway_item.find('name').text
-            
-            # Write each item in the row followed by a comma
-            # Write a newline character at the end of each row
-            f.write(f"{name},{gateway},{interface}\n")
+# Get options from file
+options = get_options_from_file('options.txt')
 
-    # If the existing file is empty, simply rename the temporary file
-    if not os.path.exists('output.txt') or os.stat('output.txt').st_size == 0:
-        os.rename(temp_file, 'output.txt')
+# Ask the user to select an option
+print("\n\033[1mAvailable Options:\033[0m")
+for i, option in enumerate(options, start=1):
+    if len(option) > 3 and option[3]:
+        print(f"\033[92m{i}. {option[0].capitalize()}\033[0m") # Green
     else:
-        # Read the new lines from the temporary file
-        with open(temp_file, 'r') as f:
-            new_rows = [line.strip() for line in f]
+        print(f"\033[93m{i}. {option[0].capitalize()}\033[0m") # Yellow
 
-        # Read the existing rows from the output file
-        with open('output.txt', 'r') as f:
-            existing_rows = {row.split(',')[0]: row for row in f} # Use the 'name' column as the key
+print("\nEnter the number associated with your choice:")
+selected_option = int(input()) - 1
 
-        # Merge the new and existing rows, keeping only the rows that exist in both
-        merged_rows = [new_row for new_row in new_rows if new_row.split(',')[0] in existing_rows]
-
-        # Write the merged rows back to the output file
-        with open('output.txt', 'w') as f:
-            for row in merged_rows:
-                f.write(row + '\n')
-
-if __name__ == "__main__":
-    read_gateway()
+# Check if the selected option is valid
+if selected_option >= len(options) or selected_option < 0:
+    print("\n\033[91mInvalid selection. Please try again.\033[0m")
+else:
+    # Ask the user to enter a URL for the selected option
+    print("\n\033[1mPlease enter a URL for \033[93m{}:\033[0m".format(options[selected_option][0].capitalize()))
+    url = input()
+    
+    # Store the URL or perform some action with it here
+    print("\n\033[1mURL for {} set to {}\033[0m".format(options[selected_option][0].capitalize(), url))
