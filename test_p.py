@@ -25,7 +25,7 @@ def read_gateway():
 
         rows_to_be_written = []
         for new_row in new_rows:
-            if tuple(new_row.split(','))[:3] not in [x[:3] for x in existing_rows]:
+            if tuple(new_row.split(',')) not in [x[:3] for x in existing_rows]:
                 rows_to_be_written.append(new_row)
 
         with open('options.txt', 'w') as f:
