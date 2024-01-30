@@ -21,11 +21,11 @@ def read_gateway():
             new_rows = [line.strip() for line in f]
 
         with open('options.txt', 'r') as f:
-            existing_rows = [tuple(line.strip().split(','))[:3] for line in f]
+            existing_rows = [tuple(line.strip().split(',')) for line in f]
 
         rows_to_be_written = []
         for new_row in new_rows:
-            if tuple(new_row.split(','))[:3] not in existing_rows:
+            if tuple(new_row.split(','))[:3] not in [x[:3] for x in existing_rows]:
                 rows_to_be_written.append(new_row)
 
         with open('options.txt', 'w') as f:
