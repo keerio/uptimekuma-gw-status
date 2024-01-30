@@ -1,6 +1,5 @@
 import os
 import xml.etree.ElementTree as ET
-
 def read_gateway():
     tree = ET.parse('config.xml')
     root = tree.getroot()
@@ -28,9 +27,10 @@ def read_gateway():
             if tuple(new_row.split(',')) not in existing_rows:
                 rows_to_be_written.append(new_row)
 
-        with open('options.txt', 'a') as f:
+        with open('options.txt', 'w') as f:
             for row in rows_to_be_written:
                 f.write(row + '\n')
+
 
 def display_menu(options):
     print("\nPlease choose an option:")
