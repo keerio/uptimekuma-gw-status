@@ -1,11 +1,50 @@
 import os
 import xml.etree.ElementTree as ET
+import csv
+import sys
+
 
 def read_gateway():
     tree = ET.parse('config.xml')
     root = tree.getroot()
 
     temp_file = 'temp.txt'
+    options_file = 'options.csv'
+
+    if not os.path.exists(options_file) or os.stat(options_file).st_size == 0:
+        open(options_file, 'w').close()
+        print ('new options.csv created')
+
+    options = []
+        with open("options.csv","rb") as fi:
+        reader = csv.reader(fi, delimiter=",")
+        for row in reader:
+            options.append(row[:3])
+    
+    xml_reader = []
+        for gateway_item in root.iter('gateway_item'):
+            interface = gateway_item.find('interface').text
+            gateway = gateway_item.find('gateway').text
+            name = gateway_item.find('name').text
+            # Append the row to the list
+            xml_reader.append([name, gateway, interface])
+    
+    for o in options:
+          
+    
+
+    with open(options_file, 'w') as f:
+        for gateway_item in root.iter('gateway_item'):
+            interface = gateway_item.find('interface').text
+            gateway = gateway_item.find('gateway').text
+            name = gateway_item.find('name').text
+
+            if 
+        
+
+
+
+
     with open(temp_file, 'w') as f:
         for gateway_item in root.iter('gateway_item'):
             interface = gateway_item.find('interface').text
