@@ -1,0 +1,10 @@
+WAN_GW,10.10.10.0,wan,value
+MLVD,10.67.33.234,opt6
+WAN_GW_2,10.10.30.0,wan
+WAN_GW_2,10.10.30.0,wan
+OVPN_DE_VPNV6,dynamic,opt1
+OVPN_RO_VPNV6,dynamic,opt8
+OVPN_SZ_VPNV6,dynamic,opt6
+OVPN_DE_VPNV4,dynamic,opt1
+OVPN_RO_VPNV4,dynamic,opt8
+OVPN_SZ_VPNV4,dynamic,opt6
