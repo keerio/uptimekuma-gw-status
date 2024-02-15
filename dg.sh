@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Function to display dialog for initial choice
 show_initial_dialog() {
